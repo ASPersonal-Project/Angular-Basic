@@ -4,3 +4,15 @@
 <button (click)="passMessage()">Click</button>
 
 <img [src]="imageUrl"/>
+
+<p [style.color]="'blue'">check</p>
+
+{{testMessage}}
+
+<button (click)="clickButton()">Click Me</button>
+
+{{testMessage}}
+<input type="text" [value]="testMessage" (keyup.enter)="typeMessage(username.value)" #username/>
+
+
+<input type="text" [(ngModel)]="useremail" (keyup.enter)="typeUserEmail()"/>
