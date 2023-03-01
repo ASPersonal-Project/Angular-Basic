@@ -1,4 +1,4 @@
-<h1>Post Form</h1>
+<!-- <h1>Post Form</h1>
 
 <input type="text" placeholder="Post Title" [(ngModel)]= "postTitle"/>
 <br/>
@@ -18,4 +18,35 @@
 <p>{{postDetails}}</p>
 <br/>
 <img [src]="imageUrl" alt=""/>
-<a [href]="postUrl">More Details</a>
+<a [href]="postUrl">More Details</a> -->
+
+<h1>User Details</h1>
+<br><br>
+<input type="text" [(ngModel)]="name">
+<br><br>
+<input type="text" [(ngModel)]="email">
+<br><br>
+<textarea name="" id="" cols="30" rows="10" [(ngModel)]="address"></textarea>
+<br><br><br>
+<button (click)="saveUserDetails()">Save</button>
+<br><br>
+<div *ngIf="userDataArray.length>0; else noData">
+<table>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+   
+    <tr *ngFor="let user of userDataArray; let i=index">
+        <td>{{i}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.address}}</td>
+        <td><button (click)="deleteUser(i)">Delete</button></td>
+    </tr>
+</table>
+</div>
+<ng-template #noData>Array is Empty</ng-template>
