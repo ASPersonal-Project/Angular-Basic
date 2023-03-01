@@ -1,0 +1,13 @@
+<p>post-list works!</p>
+
+{{postname}}
+<button (click)="emitMsg()">New Click</button>
+
+<!-- <img [src]="imageUrl"/> -->
+
+<p [class.text-color]="bool">Class binding</p>
+<p [style.backgroundColor]="'blue'">Style binding</p>
+
+<input type="text" (keyup.enter)="getInputValue()" [(ngModel)]="eventvalue"/>
+
+{{inputvalue}}

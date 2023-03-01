@@ -16,3 +16,9 @@
 
 
 <input type="text" [(ngModel)]="useremail" (keyup.enter)="typeUserEmail()"/>
+
+<app-post-list [postname]="'from parent'" (msgEvent)="recivedNewMsg($event)"></app-post-list>
+
+{{childMsg}}
+{{newOutputMsg}}
+
