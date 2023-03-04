@@ -1,16 +1,29 @@
 <div class="m-5">
-<form class="row g-3">
+<form class="row g-3" #f="ngForm" (submit)="onSubmit(f)">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <input 
+        type="email" 
+        class="form-control" 
+        name="email" 
+        ngModel  
+        #email="ngModel" 
+        (change)="getValue(email)"
+        required
+        [ngClass] = "{'is-invalid': email.invalid && email.touched}"
+        >
+        <div class="alert alert-warning" role="alert" *ngIf = 'email.invalid && email.touched'>
+            email is required
+          </div>
     </div>
+    
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <input type="password" class="form-control" name="password" ngModel #password="ngModel">
     </div>
     <div class="col-12">
       <label for="inputAddress" class="form-label">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <input type="text" class="form-control" placeholder="1234 Main St" name="address" ngModel #address="ngModel">
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Sign in</button>
