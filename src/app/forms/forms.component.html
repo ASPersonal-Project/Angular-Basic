@@ -1,5 +1,7 @@
+<!-- Template Driven Forms -->
+
 <div class="m-5">
-<form class="row g-3" #f="ngForm" (submit)="onSubmit(f)">
+<form class="row g-3" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Email</label>
       <input 
@@ -11,10 +13,20 @@
         (change)="getValue(email)"
         required
         [ngClass] = "{'is-invalid': email.invalid && email.touched}"
+        maxlength="10"
+        minlength="5"
         >
-        <div class="alert alert-warning" role="alert" *ngIf = 'email.invalid && email.touched'>
+        <div *ngIf="email?.errors?.['required']">
+          <div class="alert alert-warning" role="alert" *ngIf = 'email.invalid && email.touched'>
             email is required
           </div>
+        </div>
+        <div *ngIf="email?.errors?.['minlength']">
+          <div class="alert alert-warning" role="alert" *ngIf = 'email.invalid && email.touched'>
+            email is required minLength
+          </div>
+        </div>
+        
     </div>
     
     <div class="col-md-6">
@@ -26,7 +38,7 @@
       <input type="text" class="form-control" placeholder="1234 Main St" name="address" ngModel #address="ngModel">
     </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
     </div>
   </form>
 </div>
