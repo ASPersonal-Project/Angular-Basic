@@ -9,29 +9,57 @@ import { FormControl, NgForm, NgModel,FormGroup, Validators } from '@angular/for
 export class FormsComponent {
 
   form:any;
-  emailRegex:any ='xxxxxxxxxxxxxxxx';
+  // emailRegex:any ='xxxxxxxxxxxxxxxx';
 
   constructor(){
     this.form = new FormGroup({
       email: new FormControl('',[
         Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(10),
-        Validators.email
-        // Validators.pattern(this.emailRegex)
+        Validators.minLength(5)
       ]),
-      password: new FormControl(),
-      address: new FormControl()
+      password: new FormControl('',[
+        Validators.required
+      ]),
+      address: new FormControl('',[
+        Validators.required
+      ]),
+
+      contactDetails: new FormGroup({
+        city: new FormControl('',[
+          Validators.required
+        ]),
+        mobile: new FormControl('')
+      })
     })
   }
 
   get Email(){
-    return this.form.email
+    return this.form.get('email')
   }
 
-  onSubmit(f:NgForm){
-    console.log(f)
+  get Password(){
+    return this.form.get('password')
   }
+
+  get Address(){
+    return this.form.get('address')
+  }
+
+  get ContactDetails(){
+    return this.form.get('contactDetails')
+  }
+
+  get City(){
+    return this.form.get('contactDetails.city')
+  }
+
+  onSubmit(){
+    console.log(this.form.value)
+  }
+
+  // onSubmit(f:NgForm){
+  //   console.log(f)
+  // }
 
   getValue(f:NgModel){
     console.log(f)

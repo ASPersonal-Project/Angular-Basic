@@ -1,6 +1,6 @@
 <!-- Template Driven Forms -->
 
-<div class="m-5">
+<!-- <div class="m-5">
 <form class="row g-3" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Email</label>
@@ -41,11 +41,11 @@
       <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
     </div>
   </form>
-</div>
+</div> -->
 
 <!-- Reactive form -->
 <div class="m-5">
-  <form class="row g-3" [formGroup]="form">
+  <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Email</label>
         <input 
@@ -54,12 +54,14 @@
           name="email"
           formControlName="email"
           >
-          <div *ngIf = 'Email.invalid && Email.touched'>
-            <div class="alert alert-warning" role="alert" *ngIf="Email?.errors?.['minlength']">
-              Min length is 5
+          <div class="alert alert-warning" *ngIf = 'Email.invalid && Email.touched'>
+            <div *ngIf="Email.errors?.['required']">
+              email is required
             </div>
-          </div>
-          
+            <div *ngIf="Email.errors?.['minlength']">
+              email is required minLength
+            </div>
+          </div>       
       </div>
       
       <div class="col-md-6">
@@ -70,11 +72,11 @@
           name="password"
           formControlName="password"
         >
-        <div *ngIf = 'email.invalid && email.touched'>
-            <div class="alert alert-warning" role="alert" *ngIf="password?.errors?.['required']">
-              email is required
-            </div>
+        <div class="alert alert-warning" *ngIf = 'Password.invalid && Password.touched'>
+          <div *ngIf="Password.errors?.['required']">
+            Password is required
           </div>
+        </div> 
       </div>
       <div class="col-12">
         <label for="inputAddress" class="form-label">Address</label>
@@ -85,9 +87,45 @@
           name="address" 
           formControlName="address"
         >
+        <div class="alert alert-warning" *ngIf = 'Address.invalid && Address.touched'>
+          <div *ngIf="Address.errors?.['required']">
+            Address is required
+          </div>
+        </div> 
       </div>
+    <div [formGroup]="ContactDetails">
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">City</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          name="city"
+          formControlName="city"
+          >
+          <div class="alert alert-warning" *ngIf = 'City.invalid && City.touched'>
+            <div *ngIf="City.errors?.['required']">
+              City is required
+            </div>
+          </div>       
+      </div>
+      
+      <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Mobile</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="mobile"
+            formControlName="mobile"
+          >
+          <div class="alert alert-warning" *ngIf = 'Password.invalid && Password.touched'>
+            <div *ngIf="Password.errors?.['required']">
+              Password is required
+            </div>
+          </div> 
+      </div>
+    </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
       </div>
     </form>
   </div>
