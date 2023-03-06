@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { FormControl, NgForm, NgModel,FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, NgForm, NgModel,FormGroup, Validators, FormArray,FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-forms',
@@ -11,29 +11,56 @@ export class FormsComponent {
   form:any;
   // emailRegex:any ='xxxxxxxxxxxxxxxx';
 
-  constructor(){
-    this.form = new FormGroup({
-      email: new FormControl('',[
+  constructor(fb:FormBuilder){
+//using Formbuilder
+    this.form = fb.group({
+      email: ['',[
         Validators.required,
-        Validators.minLength(5)
-      ]),
-      password: new FormControl('',[
-        Validators.required
-      ]),
-      address: new FormControl('',[
-        Validators.required
-      ]),
+        Validators.minLength(5),
+      ]],
 
-      contactDetails: new FormGroup({
-        city: new FormControl('',[
+      password: ['',[
+        Validators.required
+      ]],
+
+      address: ['',[
+        Validators.required
+      ]],
+
+      contactDetails: fb.group({
+        city: ['',[
           Validators.required
-        ]),
-        mobile: new FormControl('')
+        ]],
+        mobile: ['']
       }),
-      skills: new FormArray([])
-
-
+      skills: fb.array
     })
+
+
+
+
+    // this.form = new FormGroup({
+    //   email: new FormControl('',[
+    //     Validators.required,
+    //     Validators.minLength(5)
+    //   ]),
+    //   password: new FormControl('',[
+    //     Validators.required
+    //   ]),
+    //   address: new FormControl('',[
+    //     Validators.required
+    //   ]),
+
+    //   contactDetails: new FormGroup({
+    //     city: new FormControl('',[
+    //       Validators.required
+    //     ]),
+    //     mobile: new FormControl('')
+    //   }),
+    //   skills: new FormArray([])
+
+
+    // })
   }
 
   get Email(){

@@ -135,16 +135,11 @@
         (keyup.enter)="addSkills(skill)"
       >
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let skill of Skills.value; let i = index">
+        <li class="list-group-item" *ngFor="let skill of Skills.controls; let i = index">
           {{skill}}
           <a class="btn btn-sm btn-danger" (click)="removeSkill(i)"></a>
         </li>
       </ul>
-      <!-- <div class="alert alert-warning" *ngIf = 'Address.invalid && Address.touched'>
-        <div *ngIf="Address.errors?.['required']">
-          Address is required
-        </div>
-      </div>  -->
     </div>
       <div class="col-12">
         <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
